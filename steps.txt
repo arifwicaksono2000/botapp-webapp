@@ -1,0 +1,41 @@
+# STEP TO RUN PROGRAMS
+
+## CREATE VIRTUAL MACHINE
+
+1. python3 -m venv djenv ==> mac
+2. py -3.11 -m venv djenv ==> windows
+3. py -0p => to get all python list in windows
+
+(Optional to install specific version) MAC
+
+1. brew install python@3.11
+2. ls -l /opt/homebrew/opt/python@3.11/bin/python3.11
+3. /opt/homebrew/opt/python@3.11/bin/python3.11 -m venv djenv ==> mac
+
+## TURN ON VIRTUAL MACHINE
+
+1. Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+2. djenv\Scripts\activate => this is for windows
+3. source djenv/bin/activate => this is for mac
+
+## INSTALL LIBRARY
+
+1. pip install -r requirements.txt
+
+## APP SETUP
+1. ./reset_db.sh ==> mac
+2. python manage.py migrate (if'n you didn't use reset_db)
+
+## RUN APP WITH SHELL
+1. ./runserver.sh
+
+## RUN APP MANUALLY
+1. source djenv/bin/activate
+2. cd djbotapp
+3. python manage.py runserver
+
+## RUN APP VIA WEBSOCKET
+1. daphne -p 8000 djbotapp.asgi:application
+
+
+

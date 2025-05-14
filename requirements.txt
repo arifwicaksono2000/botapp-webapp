@@ -1,0 +1,7 @@
+django
+mysql-connector-python
+requests
+dotenv
+channels
+channels_redis
+daphne

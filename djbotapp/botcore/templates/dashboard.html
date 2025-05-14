@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ request.user.username }}!</h1>
+    <p>This is your custom dashboard page.</p>
+    <!-- <p id="botState">🤖 Bot Status: Loading...</p> -->
+
+    <p>
+      <a href="{% url 'trades' %}">
+        🚀 View Active Trades
+      </a>
+    </p>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    <form method="post" action="{% url 'emergency_close' %}" onsubmit="return confirm('Close all open positions?');">
+        {% csrf_token %}
+        <button class="btn btn-danger">🛑 Emergency Close</button>
+    </form>
+
+    <script>
+        // const socket = new WebSocket("ws://" + window.location.host + "/ws/botstatus/");
+    
+        // socket.onmessage = function (event) {
+        //     const data = JSON.parse(event.data);
+        //     console.log("Bot update:", data);
+    
+        //     const el = document.getElementById("botState");
+        //     el.textContent = "🤖 Bot Status: " + (data.state || "unknown");
+        // };
+    </script>
+    
+</body>
+
+</html>

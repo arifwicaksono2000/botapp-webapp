@@ -1,0 +1,65 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$600000$example$examplehashedpasswordhere",
+      "first_name": "Arif",
+      "last_name": "Wicaksono",
+      "email": "arifwsno@gmail.com",
+      "is_staff": true,
+      "is_superuser": true,
+      "is_active": true,
+      "date_joined": "2025-05-10T21:57:15.430769"
+    }
+  },
+  {
+    "model": "botcore.subaccount",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "name": "Account 42869244",
+      "platform": "ctrader",
+      "account_id": "42869244",
+      "balance": 0,
+      "is_default": false
+    }
+  },
+  {
+    "model": "botcore.subaccount",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "name": "Account 42825116",
+      "platform": "ctrader",
+      "account_id": "42825116",
+      "balance": 46.44,
+      "is_default": true
+    }
+  },
+  {
+    "model": "botcore.subaccount",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "name": "Account 42596960",
+      "platform": "ctrader",
+      "account_id": "42596960",
+      "balance": 0,
+      "is_default": false
+    }
+  },
+  {
+    "model": "botcore.subaccount",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "name": "Account 42610743",
+      "platform": "ctrader",
+      "account_id": "42610743",
+      "balance": 299999.90,
+      "is_default": false
+    }
+  }
+]
