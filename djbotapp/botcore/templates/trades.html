@@ -1,62 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Trades Dashboard</title>
+  <title>Live Position Tracker</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .positive { color: green; }
+    .negative { color: red; }
+  </style>
 </head>
 <body>
-    <h1>Active Trades</h1>
+  <h1>📈 Real-Time Positions</h1>
 
-    <form method="post" action="{% url 'start_trade' %}">
-        {% csrf_token %}
-        <select name="side">
-            <option value="buy">Buy</option>
-            <option value="sell">Sell</option>
-        </select>
-        <input type="number" name="volume" placeholder="Volume (1000 = 0.01 lot)" required>
-        <input type="number" name="hold" placeholder="Hold (seconds)" required>
-        <button type="submit">▶️ Start New Trade</button>
-    </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Position ID</th>
+        <th>Symbol</th>
+        <th>Volume</th>
+        <th>Entry Price</th>
+        <th>Current Price</th>
+        <th>Unrealized PnL</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="position-table-body">
+      <!-- Rows will be injected dynamically -->
+    </tbody>
+  </table>
 
-    <hr>
+  <script>
+    let socket = new WebSocket("ws://localhost:9000/ws/positions");
 
-    <table border="1">
-        <tr>
-            <th>Trade ID</th>
-            <th>Side</th>
-            <th>Volume</th>
-            <th>Hold (seconds)</th>
-            <th>Status</th>
-            <th>PID</th>
-        </tr>
-        {% for trade_id, trade in trades.items %}
-        <tr id="trade-{{ trade_id }}">
-            <td>{{ trade_id }}</td>
-            <td>{{ trade.side }}</td>
-            <td>{{ trade.volume }}</td>
-            <td>{{ trade.hold }}</td>
-            <td class="status">{{ trade.status }}</td>
-            <td>{{ trade.pid }}</td>
-        </tr>
-        {% empty %}
-        <tr><td colspan="6">No active trades.</td></tr>
-        {% endfor %}
-    </table>
+    socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        if (!data.positionId) return;
 
-    <script>
-        const socket = new WebSocket(`ws://${window.location.host}/ws/bot/status/`);
-        socket.onmessage = ({ data }) => {
-          const trades = JSON.parse(data);
-          for (const [id, info] of Object.entries(trades)) {
-            const row = document.getElementById(`trade-${id}`);
-            if (row) {
-              row.querySelector('.status').innerText = info.status;
-            }
-          }
-        };
-        socket.onclose = () => console.warn('WebSocket closed');
-      </script>
-      
-        
+        const posId = data.positionId;
+        const rowId = `pos-${posId}`;
+        let row = document.getElementById(rowId);
 
+        if (!row) {
+            row = document.createElement("tr");
+            row.id = rowId;
+            row.innerHTML = `
+              <td>${posId}</td>
+              <td>${data.symbolId}</td>
+              <td>${data.volume}</td>
+              <td>${data.entry_price}</td>
+              <td class="current-price"></td>
+              <td class="pnl"></td>
+              <td class="status"></td>
+            `;
+            document.getElementById("position-table-body").appendChild(row);
+        }
+
+        row.querySelector(".current-price").innerText = data.price.toFixed(5);
+        const pnlCell = row.querySelector(".pnl");
+        pnlCell.innerText = data.unrealisedPnL.toFixed(2);
+        pnlCell.className = "pnl " + (data.unrealisedPnL >= 0 ? "positive" : "negative");
+        row.querySelector(".status").innerText = data.status;
+    };
+
+    socket.onclose = () => console.warn("WebSocket closed");
+
+  </script>
 </body>
 </html>
