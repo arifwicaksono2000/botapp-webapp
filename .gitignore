@@ -1,4 +1,5 @@
 djenv
-djbotapp/__pycache__
-botcore/__pycache__
+__pycache__/
+**/__pycache__/
+**/migrations/
 staticfiles
