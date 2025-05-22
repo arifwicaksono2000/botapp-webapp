@@ -1,4 +1,4 @@
 #!/bin/bash
 source djenv/bin/activate
 cd djbotapp
-python manage.py runserver
+daphne -p 8000 djbotapp.asgi:application

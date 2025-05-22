@@ -1,31 +1,23 @@
-"""
-ASGI config for djbotapp project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
-"""
-
-# import os
-
-# from django.core.asgi import get_asgi_application
-
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djbotapp.settings')
-
-# application = get_asgi_application()
-
 # asgi.py
 import os
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
-import botcore.routing
+from django.conf import settings # Import settings
+import botcore.routing # Assuming botcore.routing is correctly set up
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djbotapp.settings')
 
+# Get the base HTTP ASGI application
+http_application = get_asgi_application()
+
+# If in DEBUG mode, wrap the HTTP application with StaticFilesHandler
+# if settings.DEBUG:
+#     from django.contrib.staticfiles.handlers import StaticFilesHandler
+#     http_application = StaticFilesHandler(http_application)
+
 application = ProtocolTypeRouter({
-    "http": get_asgi_application(),
+    "http": http_application,  # Use the (potentially wrapped) HTTP application
     "websocket": AuthMiddlewareStack(
         URLRouter(
             botcore.routing.websocket_urlpatterns
