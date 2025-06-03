@@ -37,5 +37,9 @@
 ## RUN APP VIA WEBSOCKET
 1. daphne -p 8000 djbotapp.asgi:application
 
+## List all available routes:
+Note: reserved routes didn't get printed
+1. python manage.py shell
+
 
 

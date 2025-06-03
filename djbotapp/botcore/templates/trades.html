@@ -27,7 +27,7 @@
       <tr>
         <th>Position ID</th>
         <th>Symbol</th>
-        <th>Volume</th>
+        <th>Lot</th>
         <th>Entry Price</th>
         <th>Current Price</th>
         <th>Unrealized PnL</th>
@@ -45,6 +45,7 @@
     socket.onmessage = function(event) {
         const data = JSON.parse(event.data);
         if (!data.positionId) return;
+        console.log(data);
 
         const posId = data.positionId;
         const rowId = `pos-${posId}`;
@@ -55,8 +56,8 @@
             row.id = rowId;
             row.innerHTML = `
               <td>${posId}</td>
-              <td>${data.symbolId}</td>
-              <td>${data.volume}</td>
+              <td>${data.symbolId == 1 ? 'EUR' : 'Undefined'}</td>
+              <td>${data.lot}</td>
               <td>${data.entry_price}</td>
               <td class="current-price"></td>
               <td class="pnl"></td>
@@ -66,10 +67,10 @@
         }
 
         row.querySelector(".current-price").innerText = data.price.toFixed(5);
+        row.querySelector(".status").innerText = data.status;
         const pnlCell = row.querySelector(".pnl");
         pnlCell.innerText = data.unrealisedPnL.toFixed(2);
-        pnlCell.className = "pnl " + (data.unrealisedPnL >= 0 ? "positive" : "negative");
-        row.querySelector(".status").innerText = data.status;
+        // pnlCell.className = "pnl " + (data.unrealisedPnL >= 0 ? "positive" : "negative");
     };
 
     socket.onclose = () => console.warn("WebSocket closed");

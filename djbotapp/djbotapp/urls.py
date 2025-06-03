@@ -23,7 +23,7 @@ from botcore import views
 
 urlpatterns = [
     # Django Admin panel
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('trades/', views.trades_view, name='trades'),
 
     # Your dashboard view (protected by @login_required)
