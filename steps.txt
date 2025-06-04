@@ -17,6 +17,7 @@
 1. Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 2. djenv\Scripts\activate => this is for windows
 3. source djenv/bin/activate => this is for mac
+4. source djenv/Scripts/activate => this is for windows with bash
 
 ## INSTALL LIBRARY
 
