@@ -40,5 +40,9 @@
 ## ADD STATICFILE
 1. python manage.py collectstatic --noinput
 
+## List all available routes:
+Note: reserved routes didn't get printed
+1. python manage.py shell
+
 
 
