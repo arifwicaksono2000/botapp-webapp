@@ -37,5 +37,8 @@
 ## RUN APP VIA WEBSOCKET
 1. daphne -p 8000 djbotapp.asgi:application
 
+## ADD STATICFILE
+1. python manage.py collectstatic --noinput
+
 
 
