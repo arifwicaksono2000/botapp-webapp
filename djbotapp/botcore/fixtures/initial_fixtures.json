@@ -35,7 +35,7 @@
       "platform": "ctrader",
       "account_id": "42825116",
       "balance": 46.44,
-      "is_default": true
+      "is_default": false
     }
   },
   {
@@ -55,10 +55,22 @@
     "pk": 4,
     "fields": {
       "user": 1,
-      "name": "Account 42610743",
+      "name": "Account 9363397",
       "platform": "ctrader",
       "account_id": "42610743",
       "balance": 299999.90,
+      "is_default": true
+    }
+  },
+  {
+    "model": "botcore.subaccount",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "name": "Account 9449996",
+      "platform": "ctrader",
+      "account_id": "43403439",
+      "balance": 200,
       "is_default": false
     }
   }

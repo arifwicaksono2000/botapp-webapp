@@ -7,6 +7,7 @@ if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; t
 else
     # macOS/Linux
     source djenv/bin/activate
+fi
 
 # Move to app directory
 cd djbotapp
