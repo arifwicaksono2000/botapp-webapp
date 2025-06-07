@@ -45,5 +45,10 @@
 Note: reserved routes didn't get printed
 1. python manage.py shell
 
+## Kill Address already in use
+
+1. lsof -i :8000
+2. kill -9 1234 => 1234 is the id
+
 
 
