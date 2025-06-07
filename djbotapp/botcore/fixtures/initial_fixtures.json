@@ -73,5 +73,21 @@
       "balance": 200,
       "is_default": false
     }
+  },
+  {
+    "model": "botcore.constant",
+    "pk": 1,
+    "fields": {
+      "variable": "initial_level",
+      "value": "4"
+    }
+  },
+  {
+    "model": "botcore.constant",
+    "pk": 2,
+    "fields": {
+      "variable": "ending_level",
+      "value": "15"
+    }
   }
 ]

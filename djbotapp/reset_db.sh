@@ -16,7 +16,14 @@ else
 fi
 
 # Path to virtualenv activate script (optional)
-VENV_ACTIVATE="./djenv/bin/activate"
+echo "🚀 Activating virtual environment..."
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
+    # Windows (Git Bash, WSL, or Cygwin)
+    source djenv/Scripts/activate
+else
+    # macOS/Linux
+    source djenv/bin/activate
+fi
 
 echo "🧨 Dropping and recreating MySQL database '$DB_NAME' using MySQL from: $MYSQL"
 "$MYSQL" -u"$DB_USER" -h"$DB_HOST" -P"$DB_PORT" -e "DROP DATABASE IF EXISTS \`$DB_NAME\`; CREATE DATABASE \`$DB_NAME\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
@@ -30,7 +37,7 @@ find . -path "*/migrations/*.pyc" -delete
 # source "$VENV_ACTIVATE"
 
 echo "⚙️ Running fresh migrations..."
-python manage.py makemigrations
+python manage.py makemigrations botcore
 python manage.py migrate
 
 echo "📦 Loading initial fixtures..."

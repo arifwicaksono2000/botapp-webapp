@@ -54,7 +54,7 @@ class Segments(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     subaccount_id = models.ForeignKey(Subaccount, on_delete=models.SET_NULL, null=True, blank=True)
     milestone_id = models.ForeignKey(Milestone, on_delete=models.SET_NULL, null=True, blank=True)
-    total_positions = models.IntegerField
+    total_positions = models.IntegerField()
     total_balance = models.DecimalField(max_digits=15, decimal_places=4)
     pair = models.CharField(max_length=10, default='EURUSD')
     opened_at = models.DateTimeField(auto_now_add=True)
@@ -71,8 +71,8 @@ class Trades(models.Model):
 
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     curr_active = models.CharField(max_length=10, choices=CURRENT_ACTIVE_TYPE)
-    current_level = models.IntegerField
-    achieved_level = models.IntegerField
+    current_level = models.IntegerField()
+    achieved_level = models.IntegerField()
     starting_balance = models.DecimalField(max_digits=15, decimal_places=4)
     profit_goal = models.DecimalField(max_digits=15, decimal_places=4)
     ending_balance = models.DecimalField(max_digits=15, decimal_places=4)
@@ -114,3 +114,11 @@ class TradeDetail(models.Model):
 
     def __str__(self):
         return f"{self.position_type.title()} | {self.entry_price} ({'Closed' if self.closed_at else 'Open'})"
+    
+# Milestone checkpoints for hedging strategy
+class Constant(models.Model):
+    variable = models.TextField()
+    value = models.TextField()
+
+    def __str__(self):
+        return f"Defined Variable {self.variable}"
