@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Segment History</title>
+  <style>
+    /* ... (your existing CSS styles remain the same) ... */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #e0e0e0;
+      text-align: left;
+      font-size: 0.9em;
+    }
+    th {
+      background-color: #e9ecef;
+      color: #495057;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    tr:hover {
+      background-color: #e2e6ea;
+      cursor: pointer;
+    }
+    .status-open {
+      color: green;
+      font-weight: bold;
+    }
+    .status-closed {
+      color: red;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .message-row { /* Renamed from loading-message for clarity */
+      text-align: center;
+      padding: 20px;
+      font-size: 1.1em;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+  <h1>📈 Segment History</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Subaccount</th>
+        <th>Milestone</th>
+        <th>Pair</th>
+        <th>Total Positions</th>
+        <th>Total Balance</th>
+        <th>Opened At (UTC)</th>
+        <th>Closed At (UTC)</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="segments-table-body">
+      {# --- Django Template Rendering for Initial Data --- #}
+      {% if initial_segments %}
+        {% for segment in initial_segments %}
+          <tr>
+            <td>{{ segment.id }}</td>
+            <td>{{ segment.subaccount_name }}</td>
+            <td class="text-center">{{ segment.milestone_id }}</td>
+            <td class="text-center">{{ segment.pair }}</td>
+            <td class="text-center">{{ segment.total_positions }}</td>
+            <td class="text-center">{{ segment.total_balance|floatformat:"2" }}</td>
+            <td>{{ segment.opened_at|date:"Y-m-d H:i:s T" }}</td> {# Format date in Django #}
+            <td>
+              {% if segment.closed_at %}
+                {{ segment.closed_at|date:"Y-m-d H:i:s T" }}
+              {% else %}
+                Open
+              {% endif %}
+            </td>
+            <td class="{% if segment.status == 'Open' %}status-open{% else %}status-closed{% endif %} text-center">
+              {{ segment.status }}
+            </td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr><td colspan="9" class="message-row">No segments found, or an error occurred.</td></tr>
+      {% endif %}
+      {# --- End Django Template Rendering --- #}
+    </tbody>
+  </table>
+
+  {# No JavaScript for fetching or refreshing needed here #}
+</body>
+</html>

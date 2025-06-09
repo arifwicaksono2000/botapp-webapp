@@ -5,7 +5,8 @@ from .models import (
     Milestone,
     Segments,
     Trades,
-    TradeDetail
+    TradeDetail,
+    Constant
 )
 
 @admin.register(Token)
@@ -81,3 +82,12 @@ class TradeDetailAdmin(admin.ModelAdmin):
     )
     list_filter = ('position_type', 'is_liquidated')
     search_fields = ('uuid', 'trade_id__id')
+
+@admin.register(Constant)
+class ConstantAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'variable',
+        'value'
+    )
+    search_fields = ('variable',)

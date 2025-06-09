@@ -24,6 +24,7 @@ from botcore import views
 urlpatterns = [
     # Django Admin panel
     path('admin/', admin.site.urls, name='admin'),
+    path('segments/', views.segments_view, name='segments'),
     path('trades/', views.trades_view, name='trades'),
 
     # Your dashboard view (protected by @login_required)

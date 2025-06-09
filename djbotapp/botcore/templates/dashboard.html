@@ -2,46 +2,143 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6; /* Light background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50; /* Darker blue heading */
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-link {
+            display: inline-block;
+            margin: 10px 15px;
+            padding: 12px 25px;
+            background-color: #3498db; /* Blue button */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-link:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        form {
+            display: inline-block; /* Aligns forms nicely */
+            margin: 10px 15px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button[type="submit"] { /* Logout button */
+            background-color: #95a5a6; /* Greyish color */
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #7f8c8d; /* Darker grey on hover */
+            transform: translateY(-2px);
+        }
+
+        .btn-danger { /* Emergency Close button */
+            background-color: #e74c3c; /* Red color */
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b; /* Darker red on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .dashboard-link, button {
+                display: block;
+                width: calc(100% - 30px); /* Adjust for padding */
+                margin: 10px auto;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome, {{ request.user.username }}!</h1>
-    <p>This is your custom dashboard page.</p>
-    <!-- <p id="botState">🤖 Bot Status: Loading...</p> -->
+    <div class="container">
+        <h1>Welcome, {{ request.user.username }}!</h1>
+        <p>Welcome to Botcore.</p>
+        
+        <p>
+            <a href="{% url 'admin:index' %}" class="dashboard-link">
+              🚀 View Admin
+            </a>
+        </p>
 
-    <p>
-        <a href="{% url 'admin:index' %}">
-          🚀 View Admin
-        </a>
-    </p>
+        <p>
+          <a href="{% url 'segments' %}" class="dashboard-link">
+            📊 View Segments History
+          </a>
+        </p>
 
-    <p>
-      <a href="{% url 'trades' %}">
-        🚀 View Active Trades
-      </a>
-    </p>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
 
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-
-    <form method="post" action="{% url 'emergency_close' %}" onsubmit="return confirm('Close all open positions?');">
-        {% csrf_token %}
-        <button class="btn btn-danger">🛑 Emergency Close</button>
-    </form>
+        <form method="post" action="{% url 'emergency_close' %}" onsubmit="return confirm('Close all open positions? This action cannot be undone.');">
+            {% csrf_token %}
+            <button class="btn btn-danger">🛑 Emergency Close</button>
+        </form>
+    </div>
 
     <script>
+        // Your WebSocket code remains commented out as requested.
+        // If you re-enable it, ensure 'botState' element exists.
         // const socket = new WebSocket("ws://" + window.location.host + "/ws/botstatus/");
-    
         // socket.onmessage = function (event) {
         //     const data = JSON.parse(event.data);
         //     console.log("Bot update:", data);
-    
         //     const el = document.getElementById("botState");
         //     el.textContent = "🤖 Bot Status: " + (data.state || "unknown");
         // };
     </script>
-    
 </body>
-
 </html>

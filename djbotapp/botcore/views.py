@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib import messages
 from dotenv import load_dotenv
+from .models import Segments
 
 load_dotenv()
 
@@ -38,6 +39,31 @@ def trades_view(request):
         trade_statuses = resp.json()
 
     return render(request, "trades.html", {"trades": trade_statuses})
+
+@login_required
+def segments_view(request):
+    segments_list = []
+    try:
+        segments = Segments.objects.select_related('subaccount', 'milestone').order_by('-opened_at')[:20]
+
+        for segment in segments:
+            segments_list.append({
+                'id': segment.id,
+                'uuid': str(segment.uuid),
+                'subaccount_name': segment.subaccount.name if segment.subaccount else 'N/A',
+                'milestone_id': segment.milestone.id if segment.milestone else 'N/A',
+                'total_positions': segment.total_positions,
+                'total_balance': float(segment.total_balance),
+                'pair': segment.pair,
+                'opened_at': segment.opened_at,
+                'closed_at': segment.closed_at,
+                'status': 'Open' if segment.closed_at is None else 'Closed',
+            })
+    except Exception as e:
+        print(f"Error fetching segments for template: {e}")
+        segments_list = []
+
+    return render(request, "segments.html", {'initial_segments': segments_list})
 
 
 @login_required

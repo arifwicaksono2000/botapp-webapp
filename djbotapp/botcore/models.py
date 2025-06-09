@@ -91,13 +91,6 @@ class TradeDetail(models.Model):
         ('short', 'Short'),
     ]
 
-    # LIQUIDATION_CHOICES = [
-    #     ('none', 'None yet'),
-    #     ('long_liquidated', 'Long liquidated'),
-    #     ('short_liquidated', 'Short liquidated'),
-    #     ('both_loss', 'Both positions liquidated'),
-    # ]
-
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     trade_id = models.ForeignKey(Trades, on_delete=models.CASCADE, related_name='details')
     position_type = models.CharField(max_length=10, choices=POSITION_TYPE_CHOICES)
@@ -114,6 +107,36 @@ class TradeDetail(models.Model):
 
     def __str__(self):
         return f"{self.position_type.title()} | {self.entry_price} ({'Closed' if self.closed_at else 'Open'})"
+    
+# class TradeDetail(models.Model):
+#     POSITION_TYPE_CHOICES = [
+#         ('long', 'Long'),
+#         ('short', 'Short'),
+#     ]
+
+#     # LIQUIDATION_CHOICES = [
+#     #     ('none', 'None yet'),
+#     #     ('long_liquidated', 'Long liquidated'),
+#     #     ('short_liquidated', 'Short liquidated'),
+#     #     ('both_loss', 'Both positions liquidated'),
+#     # ]
+
+#     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+#     trade_id = models.ForeignKey(Trades, on_delete=models.CASCADE, related_name='details')
+#     position_type = models.CharField(max_length=10, choices=POSITION_TYPE_CHOICES)
+#     entry_price = models.DecimalField(max_digits=20, decimal_places=10)
+#     exit_price = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+#     pips = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+#     latest_balance = models.DecimalField(max_digits=15, decimal_places=2, null=True, blank=True)
+#     is_liquidated = models.BooleanField(default=False)
+#     # liquidation_status = models.CharField(max_length=20, choices=LIQUIDATION_CHOICES, default='none')
+#     lot_size = models.DecimalField(max_digits=10, decimal_places=2)
+#     response = models.TextField()
+#     opened_at = models.DateTimeField(auto_now_add=True)
+#     closed_at = models.DateTimeField(null=True, blank=True)
+
+#     def __str__(self):
+#         return f"{self.position_type.title()} | {self.entry_price} ({'Closed' if self.closed_at else 'Open'})"
     
 # Milestone checkpoints for hedging strategy
 class Constant(models.Model):
