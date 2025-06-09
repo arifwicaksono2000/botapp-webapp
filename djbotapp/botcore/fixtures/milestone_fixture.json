@@ -6,7 +6,7 @@
       "starting_balance": 8.79,
       "loss": 2.03,
       "profit_goal": 2.64,
-      "lot_size": 0.017,
+      "lot_size": 0.02,
       "ending_balance": 11.427
     }
   },
@@ -17,7 +17,7 @@
       "starting_balance": 11.43,
       "loss": 2.64,
       "profit_goal": 3.43,
-      "lot_size": 0.023,
+      "lot_size": 0.02,
       "ending_balance": 14.855
     }
   },
@@ -28,7 +28,7 @@
       "starting_balance": 14.86,
       "loss": 3.43,
       "profit_goal": 4.46,
-      "lot_size": 0.034,
+      "lot_size": 0.03,
       "ending_balance": 19.312
     }
   },
@@ -39,7 +39,7 @@
       "starting_balance": 19.31,
       "loss": 4.46,
       "profit_goal": 5.79,
-      "lot_size": 0.045,
+      "lot_size": 0.04,
       "ending_balance": 25.105
     }
   },
@@ -50,7 +50,7 @@
       "starting_balance": 25.11,
       "loss": 5.79,
       "profit_goal": 7.53,
-      "lot_size": 0.058,
+      "lot_size": 0.06,
       "ending_balance": 32.637
     }
   },
@@ -61,7 +61,7 @@
       "starting_balance": 32.64,
       "loss": 7.53,
       "profit_goal": 9.79,
-      "lot_size": 0.075,
+      "lot_size": 0.07,
       "ending_balance": 42.428
     }
   },
@@ -72,7 +72,7 @@
       "starting_balance": 42.43,
       "loss": 9.79,
       "profit_goal": 12.73,
-      "lot_size": 0.098,
+      "lot_size": 0.1,
       "ending_balance": 55.156
     }
   },
@@ -83,7 +83,7 @@
       "starting_balance": 55.16,
       "loss": 12.73,
       "profit_goal": 16.55,
-      "lot_size": 0.127,
+      "lot_size": 0.13,
       "ending_balance": 71.703
     }
   },
@@ -94,7 +94,7 @@
       "starting_balance": 71.7,
       "loss": 16.55,
       "profit_goal": 21.51,
-      "lot_size": 0.165,
+      "lot_size": 0.17,
       "ending_balance": 93.214
     }
   },
@@ -105,7 +105,7 @@
       "starting_balance": 93.21,
       "loss": 21.51,
       "profit_goal": 27.96,
-      "lot_size": 0.215,
+      "lot_size": 0.21,
       "ending_balance": 121.178
     }
   },
@@ -127,7 +127,7 @@
       "starting_balance": 157.53,
       "loss": 36.35,
       "profit_goal": 47.26,
-      "lot_size": 0.364,
+      "lot_size": 0.36,
       "ending_balance": 204.79
     }
   },
@@ -138,7 +138,7 @@
       "starting_balance": 204.79,
       "loss": 47.26,
       "profit_goal": 61.44,
-      "lot_size": 0.473,
+      "lot_size": 0.47,
       "ending_balance": 266.227
     }
   },
@@ -149,7 +149,7 @@
       "starting_balance": 266.23,
       "loss": 61.44,
       "profit_goal": 79.87,
-      "lot_size": 0.614,
+      "lot_size": 0.61,
       "ending_balance": 346.095
     }
   },
@@ -160,7 +160,7 @@
       "starting_balance": 346.1,
       "loss": 79.87,
       "profit_goal": 103.83,
-      "lot_size": 0.799,
+      "lot_size": 0.8,
       "ending_balance": 449.924
     }
   },
@@ -171,7 +171,7 @@
       "starting_balance": 449.92,
       "loss": 103.83,
       "profit_goal": 134.98,
-      "lot_size": 1.038,
+      "lot_size": 1.04,
       "ending_balance": 584.901
     }
   },
@@ -193,7 +193,7 @@
       "starting_balance": 760.37,
       "loss": 175.47,
       "profit_goal": 228.11,
-      "lot_size": 1.755,
+      "lot_size": 1.75,
       "ending_balance": 988.483
     }
   },
@@ -204,7 +204,7 @@
       "starting_balance": 988.48,
       "loss": 228.11,
       "profit_goal": 296.54,
-      "lot_size": 2.281,
+      "lot_size": 2.28,
       "ending_balance": 1285.028
     }
   },
@@ -215,7 +215,7 @@
       "starting_balance": 1285.03,
       "loss": 296.54,
       "profit_goal": 385.51,
-      "lot_size": 2.965,
+      "lot_size": 2.96,
       "ending_balance": 1670.536
     }
   },
@@ -226,7 +226,7 @@
       "starting_balance": 1670.54,
       "loss": 385.51,
       "profit_goal": 501.16,
-      "lot_size": 3.855,
+      "lot_size": 3.85,
       "ending_balance": 2171.697
     }
   },
@@ -237,7 +237,7 @@
       "starting_balance": 2171.7,
       "loss": 501.16,
       "profit_goal": 651.51,
-      "lot_size": 5.012,
+      "lot_size": 5.01,
       "ending_balance": 2823.206
     }
   },
@@ -248,7 +248,7 @@
       "starting_balance": 2823.21,
       "loss": 651.51,
       "profit_goal": 846.96,
-      "lot_size": 6.515,
+      "lot_size": 6.51,
       "ending_balance": 3670.168
     }
   },
@@ -270,7 +270,7 @@
       "starting_balance": 4771.22,
       "loss": 1101.05,
       "profit_goal": 1431.37,
-      "lot_size": 11.011,
+      "lot_size": 11.01,
       "ending_balance": 6202.584
     }
   },
@@ -281,7 +281,7 @@
       "starting_balance": 6202.58,
       "loss": 1431.37,
       "profit_goal": 1860.78,
-      "lot_size": 14.314,
+      "lot_size": 14.31,
       "ending_balance": 8063.36
     }
   },
@@ -292,7 +292,7 @@
       "starting_balance": 8063.36,
       "loss": 1860.78,
       "profit_goal": 2419.01,
-      "lot_size": 18.608,
+      "lot_size": 18.61,
       "ending_balance": 10482.368
     }
   },
@@ -314,7 +314,7 @@
       "starting_balance": 13627.08,
       "loss": 3144.71,
       "profit_goal": 4088.12,
-      "lot_size": 31.447,
+      "lot_size": 31.45,
       "ending_balance": 17715.201
     }
   },
@@ -325,7 +325,7 @@
       "starting_balance": 17715.2,
       "loss": 4088.12,
       "profit_goal": 5314.56,
-      "lot_size": 40.881,
+      "lot_size": 40.88,
       "ending_balance": 23029.762
     }
   },
@@ -336,7 +336,7 @@
       "starting_balance": 23029.76,
       "loss": 5314.56,
       "profit_goal": 6908.93,
-      "lot_size": 53.146,
+      "lot_size": 53.15,
       "ending_balance": 29938.69
     }
   },
@@ -347,7 +347,7 @@
       "starting_balance": 29938.69,
       "loss": 6908.93,
       "profit_goal": 8981.61,
-      "lot_size": 69.089,
+      "lot_size": 69.09,
       "ending_balance": 38920.297
     }
   },
@@ -358,7 +358,7 @@
       "starting_balance": 38920.3,
       "loss": 8981.61,
       "profit_goal": 11676.09,
-      "lot_size": 89.816,
+      "lot_size": 89.82,
       "ending_balance": 50596.386
     }
   },
@@ -369,7 +369,7 @@
       "starting_balance": 50596.39,
       "loss": 11676.09,
       "profit_goal": 15178.92,
-      "lot_size": 116.761,
+      "lot_size": 116.76,
       "ending_balance": 65775.302
     }
   },
@@ -380,7 +380,7 @@
       "starting_balance": 65775.3,
       "loss": 15178.92,
       "profit_goal": 19732.59,
-      "lot_size": 151.789,
+      "lot_size": 151.79,
       "ending_balance": 85507.893
     }
   },
@@ -391,7 +391,7 @@
       "starting_balance": 85507.89,
       "loss": 19732.59,
       "profit_goal": 25652.37,
-      "lot_size": 197.326,
+      "lot_size": 197.33,
       "ending_balance": 111160.261
     }
   },
@@ -402,7 +402,7 @@
       "starting_balance": 111160.26,
       "loss": 25652.37,
       "profit_goal": 33348.08,
-      "lot_size": 256.524,
+      "lot_size": 256.52,
       "ending_balance": 144508.339
     }
   },
@@ -413,7 +413,7 @@
       "starting_balance": 144508.34,
       "loss": 33348.08,
       "profit_goal": 43352.5,
-      "lot_size": 333.481,
+      "lot_size": 333.48,
       "ending_balance": 187860.841
     }
   },
@@ -424,7 +424,7 @@
       "starting_balance": 187860.84,
       "loss": 43352.5,
       "profit_goal": 56358.25,
-      "lot_size": 433.525,
+      "lot_size": 433.52,
       "ending_balance": 244219.094
     }
   },
@@ -435,7 +435,7 @@
       "starting_balance": 244219.09,
       "loss": 56358.25,
       "profit_goal": 73265.73,
-      "lot_size": 563.583,
+      "lot_size": 563.58,
       "ending_balance": 317484.822
     }
   },
@@ -446,7 +446,7 @@
       "starting_balance": 317484.82,
       "loss": 73265.73,
       "profit_goal": 95245.45,
-      "lot_size": 732.657,
+      "lot_size": 732.66,
       "ending_balance": 412730.268
     }
   },
@@ -457,7 +457,7 @@
       "starting_balance": 412730.27,
       "loss": 95245.45,
       "profit_goal": 123819.08,
-      "lot_size": 952.454,
+      "lot_size": 952.45,
       "ending_balance": 536549.349
     }
   },
@@ -468,7 +468,7 @@
       "starting_balance": 536549.35,
       "loss": 123819.08,
       "profit_goal": 160964.8,
-      "lot_size": 1238.191,
+      "lot_size": 1238.19,
       "ending_balance": 697514.153
     }
   },
@@ -479,7 +479,7 @@
       "starting_balance": 697514.15,
       "loss": 160964.8,
       "profit_goal": 209254.25,
-      "lot_size": 1609.648,
+      "lot_size": 1609.65,
       "ending_balance": 906768.399
     }
   },
@@ -490,7 +490,7 @@
       "starting_balance": 906768.4,
       "loss": 209254.25,
       "profit_goal": 272030.52,
-      "lot_size": 2092.542,
+      "lot_size": 2092.54,
       "ending_balance": 1178798.919
     }
   }

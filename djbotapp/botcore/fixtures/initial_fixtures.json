@@ -59,7 +59,7 @@
       "platform": "ctrader",
       "account_id": "42610743",
       "balance": 299999.90,
-      "is_default": true
+      "is_default": false
     }
   },
   {
@@ -71,7 +71,7 @@
       "platform": "ctrader",
       "account_id": "43403439",
       "balance": 200,
-      "is_default": false
+      "is_default": true
     }
   },
   {
@@ -87,7 +87,7 @@
     "pk": 2,
     "fields": {
       "variable": "ending_level",
-      "value": "15"
+      "value": "20"
     }
   }
 ]
