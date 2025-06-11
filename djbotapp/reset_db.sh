@@ -17,13 +17,23 @@ fi
 
 # Path to virtualenv activate script (optional)
 echo "🚀 Activating virtual environment..."
+# --- FIX START ---
+# Go up one directory to find djenv
+CURRENT_DIR=$(pwd)
+cd ..
+VENV_PATH="djenv"
+
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
     # Windows (Git Bash, WSL, or Cygwin)
-    source djenv/Scripts/activate
+    source "$VENV_PATH/Scripts/activate"
 else
     # macOS/Linux
-    source djenv/bin/activate
+    source "$VENV_PATH/bin/activate"
 fi
+
+# Return to the original directory where manage.py is
+cd "$CURRENT_DIR"
+# --- FIX END ---
 
 echo "🧨 Dropping and recreating MySQL database '$DB_NAME' using MySQL from: $MYSQL"
 "$MYSQL" -u"$DB_USER" -h"$DB_HOST" -P"$DB_PORT" -e "DROP DATABASE IF EXISTS \`$DB_NAME\`; CREATE DATABASE \`$DB_NAME\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
@@ -31,10 +41,6 @@ echo "🧨 Dropping and recreating MySQL database '$DB_NAME' using MySQL from: $
 echo "🧹 Cleaning all migration files..."
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 find . -path "*/migrations/*.pyc" -delete
-
-# Optional: activate virtual environment if needed
-# echo "🚀 Activating virtual environment..."
-# source "$VENV_ACTIVATE"
 
 echo "⚙️ Running fresh migrations..."
 python manage.py makemigrations botcore
