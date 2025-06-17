@@ -59,7 +59,7 @@ class Segments(models.Model):
     ]
 
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    subaccount_id = models.ForeignKey(Subaccount, on_delete=models.SET_NULL, null=True, blank=True)
+    subaccount = models.ForeignKey(Subaccount, on_delete=models.SET_NULL, null=True, blank=True)
     total_positions = models.IntegerField()
     total_balance = models.DecimalField(max_digits=15, decimal_places=4)
     pair = models.CharField(max_length=10, default='EURUSD')
@@ -90,7 +90,7 @@ class Trades(models.Model):
     ]
 
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    segment_id = models.ForeignKey(Segments, on_delete=models.SET_NULL, null=True, blank=True)
+    segment = models.ForeignKey(Segments, on_delete=models.SET_NULL, null=True, blank=True)
     curr_active = models.CharField(max_length=10, choices=CURRENT_ACTIVE_TYPE)
     
     # --- FIX IS HERE ---
@@ -134,8 +134,8 @@ class TradeDetail(models.Model):
     ]
 
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    trade_id = models.ForeignKey(Trades, on_delete=models.CASCADE, related_name='details')
-    segment_id = models.ForeignKey(Segments, on_delete=models.SET_NULL, null=True, blank=True)
+    trade = models.ForeignKey(Trades, on_delete=models.CASCADE, related_name='details')
+    segment = models.ForeignKey(Segments, on_delete=models.SET_NULL, null=True, blank=True)
     position_id = models.BigIntegerField()
     position_type = models.CharField(max_length=10, choices=POSITION_TYPE_CHOICES)
     entry_price = models.DecimalField(max_digits=20, decimal_places=10)
