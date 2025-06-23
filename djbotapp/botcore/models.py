@@ -55,10 +55,9 @@ class Segments(models.Model):
         ('running', 'Running'),
         ('successful', 'Successful'),
         ('liquidated', 'Liquidated'),
-        ('pivot', 'Pivot'),
     ]
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.CharField(max_length=36, default=uuid.uuid4, editable=False, unique=True)
     subaccount = models.ForeignKey(Subaccount, on_delete=models.SET_NULL, null=True, blank=True)
     total_positions = models.IntegerField()
     total_balance = models.DecimalField(max_digits=15, decimal_places=4)
@@ -71,6 +70,7 @@ class Segments(models.Model):
         default='running',    # Set a default status for new segments
         help_text="Current status of segments session"
     )
+    is_pivot = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Hedging Session {self.id} ({self.pair})"
@@ -89,7 +89,7 @@ class Trades(models.Model):
         ('liquidated', 'Liquidated'),
     ]
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.CharField(max_length=36, default=uuid.uuid4, editable=False, unique=True)
     segment = models.ForeignKey(Segments, on_delete=models.SET_NULL, null=True, blank=True)
     curr_active = models.CharField(max_length=10, choices=CURRENT_ACTIVE_TYPE)
     
@@ -112,7 +112,7 @@ class Trades(models.Model):
 
     starting_balance = models.DecimalField(max_digits=15, decimal_places=4)
     profit_goal = models.DecimalField(max_digits=15, decimal_places=4)
-    ending_balance = models.DecimalField(max_digits=15, decimal_places=4)
+    ending_balance = models.DecimalField(null=True, blank=True, max_digits=15, decimal_places=4)
     opened_at = models.DateTimeField(auto_now_add=True)
     closed_at = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
@@ -133,7 +133,7 @@ class TradeDetail(models.Model):
         ('short', 'Short'),
     ]
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.CharField(max_length=36, default=uuid.uuid4, editable=False, unique=True)
     trade = models.ForeignKey(Trades, on_delete=models.CASCADE, related_name='details')
     segment = models.ForeignKey(Segments, on_delete=models.SET_NULL, null=True, blank=True)
     position_id = models.BigIntegerField()
@@ -153,6 +153,7 @@ class TradeDetail(models.Model):
 class Constant(models.Model):
     variable = models.TextField()
     value = models.TextField()
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Defined Variable {self.variable}"

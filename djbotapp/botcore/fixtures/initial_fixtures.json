@@ -79,7 +79,8 @@
     "pk": 1,
     "fields": {
       "variable": "initial_level",
-      "value": "4"
+      "value": "4",
+      "is_active": true
     }
   },
   {
@@ -87,7 +88,8 @@
     "pk": 2,
     "fields": {
       "variable": "ending_level",
-      "value": "20"
+      "value": "20",
+      "is_active": true
     }
   }
 ]
