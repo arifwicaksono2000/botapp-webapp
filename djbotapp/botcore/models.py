@@ -133,6 +133,12 @@ class TradeDetail(models.Model):
         ('short', 'Short'),
     ]
 
+    STATUS_CHOICES = [
+        ('running', 'Running'),
+        ('successful', 'Successful'),
+        ('liquidated', 'Liquidated'),
+    ]
+
     uuid = models.CharField(max_length=36, default=uuid.uuid4, editable=False, unique=True)
     trade = models.ForeignKey(Trades, on_delete=models.CASCADE, related_name='details')
     segment = models.ForeignKey(Segments, on_delete=models.SET_NULL, null=True, blank=True)
@@ -141,7 +147,12 @@ class TradeDetail(models.Model):
     entry_price = models.DecimalField(max_digits=20, decimal_places=10)
     exit_price = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
     pips = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    is_liquidated = models.BooleanField(default=False)
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='running',
+        help_text="Current status each trade detail"
+    )
     lot_size = models.DecimalField(max_digits=10, decimal_places=2)
     opened_at = models.DateTimeField(auto_now_add=True)
     closed_at = models.DateTimeField(null=True, blank=True)
