@@ -137,6 +137,7 @@ class TradeDetail(models.Model):
         ('running', 'Running'),
         ('successful', 'Successful'),
         ('liquidated', 'Liquidated'),
+        ('closed', 'CLOSED'),
     ]
 
     uuid = models.CharField(max_length=36, default=uuid.uuid4, editable=False, unique=True)
